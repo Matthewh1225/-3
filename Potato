@@ -1,0 +1,3 @@
+public class Potato{
+int x =0;
+}
