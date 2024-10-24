@@ -1,24 +1,24 @@
 public class Node {
 
-    private Object current;
-    private Node next;
-    private Node pre;
+    Object info;
+    Node next;
+    Node pre;
 
     public Node(){
 
     }
-    public Node(Object current,Node next){
+    public Node(Object info,Node next){
         this.next=next;
-        this.current=current;
+        this.info=info;
     }
 
     Object getPre(){
         return this.pre;
     }
-    Object getCurrent(){
-        return this.current;
+    Object getInfo(){
+        return this.info;
     }
-    Object getNext(){
+    Node getNext(){
         return this.next;
     }
     void setPre(Node pre){
@@ -27,15 +27,41 @@ public class Node {
     void setNext(Node next){
         this.next=next;
     }
-    void setCurrent( Object current){
-         this.current=current;
+    void setInfo( Object info){
+         this.info=info;
     }
 
     public static void main(String[] args) throws Exception {
         LList l = new LList();
-        l.add("cows");
-        l.add("cats");
-        System.out.println(l.next);
+        // Node head =new Node(1,null);
+        // Node node2 =new Node(2, null);
+        // Node node3 =new Node(3, null);
+        // Node node4 =new Node(4, null);
+        // Node node5 =new Node(5, null);
+        // head.setNext(node2);
+        // node2.setNext(node3);
+        // node3.setNext(node4);
+        // node4.setNext(node5);
+        // l.setHead(head);
+        // System.out.println(head.info);
+        // System.out.println(head.next.info);
+        // System.out.println(head.next.getNext());
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        l.add(4);
+        l.add(5);
+        l.add(6);
+        l.display();
+        l.size();
+        l.add(7);
+        l.display();
+        l.size();
+        l.getData(5);
+       
         
+
+    
+       
     }
 }
