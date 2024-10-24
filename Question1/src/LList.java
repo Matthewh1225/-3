@@ -1,7 +1,6 @@
 
 public class LList {
     Node head;
-    int size;
     Node last;
 
     public void addEnd(Object info){
@@ -19,9 +18,9 @@ public class LList {
             nodeToAddEnd.setPre(nextNode);
             nextNode.setNext(nodeToAddEnd);
         }
-        size++;
+
     }
-    public Node AddBegining(Object info){
+    public Node addBegining(Object info){
         Node nodeToAddBegining = new Node();
         nodeToAddBegining.setPre(null);
         nodeToAddBegining.setInfo(info);
@@ -36,7 +35,6 @@ public class LList {
     public int search(Object value){
         Node travel = head;
         int countIndex=0;
-
         while(travel!=null){
             if (travel.getInfo().equals(value)){
                 System.out.println(value + " is at position " +countIndex);
@@ -45,24 +43,23 @@ public class LList {
             travel=travel.getNext();
             countIndex++;
         }
-        System.out.println("Not Found");
+        System.out.println(value+" Not Found");
         return -1;
         }
-        
-       
-   public Object GetValue(int indexToFind){
+   public Object get(int indexToFind){
     Node travel = head;
         int countIndex=0;
-
         while(travel!=null){
             if (countIndex==indexToFind){
+                //System.out.println("value at position "+ indexToFind+ " is "+travel.getInfo());
                 return travel.getInfo() ;
             }
+            travel=travel.getNext();
             countIndex++;
+            
         }
-        System.out.println("value at position "+ countIndex+ " is "+travel.getInfo());
-        return countIndex; 
-
+        //System.out.println("index "+ indexToFind+ " out of bounds for list size "+countIndex );
+        return null; 
    }
     public void display(){
         Node current = head;
@@ -72,7 +69,7 @@ public class LList {
         }
         System.out.println("null");
     }
-    public void size(){
+    public int size(){
         Node current = head;
         int count=1;
         while (current.next!=null){
@@ -80,8 +77,30 @@ public class LList {
             count+=1; 
         }
         System.out.println("The LinkedList is " + count + " nodes long");
-        System.out.println(size);
+      return count;
     }
-    
-    
+    public void set(int nodeIndex, Object replace){
+        Node travel = head;
+        int countIndex=0;
+        while(travel!=null){
+            if (countIndex == nodeIndex){
+                if(travel.info!=null){
+                    System.out.println(travel.getInfo() + " was replaced with " + replace);
+                travel.info = replace; 
+                }
+                else{
+                    System.out.println("node "+nodeIndex +" set to "+replace);
+                }
+            }
+                
+            travel=travel.getNext();
+            countIndex++;
+
+            if (countIndex>nodeIndex) {
+                System.out.println("nodeIndex out of bounds");
+                return;
+                
+            }  
+        }
+    }
 }
