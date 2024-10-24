@@ -32,7 +32,7 @@ public class Node {
     }
 
     public static void main(String[] args) throws Exception {
-        LList l = new LList();
+        LList list = new LList();
         // Node head =new Node(1,null);
         // Node node2 =new Node(2, null);
         // Node node3 =new Node(3, null);
@@ -46,19 +46,17 @@ public class Node {
         // System.out.println(head.info);
         // System.out.println(head.next.info);
         // System.out.println(head.next.getNext());
-        l.add(1);
-        l.add(2);
-        l.add(3);
-        l.add(4);
-        l.add(5);
-        l.add(6);
-        l.display();
-        l.size();
-        l.add(7);
-        l.display();
-        l.size();
-        l.getData(5);
-       
+        list.addEnd(167);
+        list.addEnd(72);
+        list.addEnd(673);
+        list.AddBegining( 975);
+        list.AddBegining( 835);
+        list.AddBegining( 0);
+        list.display();
+        list.GetValue(0);
+        list.search(9684);
+     
+    
         
 
     
