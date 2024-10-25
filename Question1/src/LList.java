@@ -18,7 +18,6 @@ public class LList {
             nodeToAddEnd.setPre(nextNode);
             nextNode.setNext(nodeToAddEnd);
         }
-
     }
     public Node addBegining(Object info){
         Node nodeToAddBegining = new Node();
@@ -55,8 +54,7 @@ public class LList {
                 return travel.getInfo() ;
             }
             travel=travel.getNext();
-            countIndex++;
-            
+            countIndex++;  
         }
         //System.out.println("index "+ indexToFind+ " out of bounds for list size "+countIndex );
         return null; 
@@ -86,21 +84,19 @@ public class LList {
             if (countIndex == nodeIndex){
                 if(travel.info!=null){
                     System.out.println(travel.getInfo() + " was replaced with " + replace);
-                travel.info = replace; 
+                travel.info = replace;
+                return; 
                 }
                 else{
                     System.out.println("node "+nodeIndex +" set to "+replace);
                 }
             }
-                
             travel=travel.getNext();
             countIndex++;
-
-            if (countIndex>nodeIndex) {
-                System.out.println("nodeIndex out of bounds");
-                return;
-                
-            }  
         }
+        if(countIndex>nodeIndex){
+            System.out.println("Index out of bounds");
+        }
+        
     }
 }

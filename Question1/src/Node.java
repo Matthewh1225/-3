@@ -40,16 +40,20 @@ public class Node {
         list.addEnd("bat");
         list.addEnd("hat");
         list.addEnd("cat");
-        list.addBegining("squirlle");
+        list.addBegining("monkey");
         list.display();
-        
+
         System.out.println(list.get(0));
         System.out.println(list.get(1));
         System.out.println(list.get(2));
         System.out.println(list.get(5)+"\n");
+        list.addEnd(null);
         
         list.set(2, "Tardis");
-        list.set(5, "potato");
+        list.set(3, "potato");
+        list.set(4, "tomato");
+        list.set(5, "tennet");
+       
         list.display();
     
     
