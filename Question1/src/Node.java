@@ -1,7 +1,3 @@
-
-
-
-
 public class Node {
 
     Object info;
@@ -16,7 +12,7 @@ public class Node {
         this.info=info;
     }
 
-    Object getPre(){
+    Node getPre(){
         return this.pre;
     }
     Object getInfo(){
@@ -37,31 +33,24 @@ public class Node {
 
     public static void main(String[] args) throws Exception {
         LList list = new LList();
-        list.addEnd("bat");
-        list.addEnd("hat");
-        list.addEnd("cat");
-        list.addBegining("monkey");
+        list.addEnd(1);
+        list.addEnd(3);
+        list.addBegining(7);
+        list.addBegining(9);
+        list.addBegining(5);
+        list.addBegining(4);
+        list.addEnd(2);
+        list.addEnd(6);
+        list.addBegining(8);
+        list.addBegining(600);
+        list.addEnd(500);
         list.display();
-
-        System.out.println(list.get(0));
-        System.out.println(list.get(1));
-        System.out.println(list.get(2));
-        System.out.println(list.get(5)+"\n");
-        list.addEnd(null);
-        
-        list.set(2, "Tardis");
-        list.set(3, "potato");
-        list.set(4, "tomato");
-        list.set(5, "tennet");
-       
+        System.out.println("\n");
+        list.removeByValue(500);
+        list.removeByValue(600);
         list.display();
-    
-    
-    
-    
+        list.search(420);
+        list.size();
         
-
-    
-       
     }
 }
