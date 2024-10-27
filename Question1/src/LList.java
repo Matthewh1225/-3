@@ -1,5 +1,3 @@
-
-
 public class LList<T> {
 
     Node<T> head;
@@ -21,6 +19,7 @@ public class LList<T> {
         tail = nodeToAddEnd;
         this.size++;
     }
+
     public Node<T> addBegining(T info){
         Node<T> nodeToAddBegining = new Node<>();
         nodeToAddBegining.setPre(null);
@@ -35,6 +34,7 @@ public class LList<T> {
 
         return head;
     }
+
     public void removeByIndex(int index){
         Node<T> current = head;
         int count = 0;
@@ -44,17 +44,18 @@ public class LList<T> {
                 if( current==head){
                     head=current.getNext();
                 }
-                if(current.pre!=null){
-                    current.pre.next=current.next;
+                if(current.getPre()!=null){
+                    current.getPre().setNext(current.getNext());
                 }
-                if (current.next!=null){
-                    current.next.pre=current.pre;
+                if (current.getNext()!=null){
+                    current.getNext().setPre(current.getPre());
                 }
             }
             current=current.getNext();
             count++; 
         }
     } 
+
     public void removeByValue(T value){
         Node<T> current = head;
         this.size--;
@@ -63,32 +64,32 @@ public class LList<T> {
                 if( current==head){
                     head=current.getNext();
                 }
-                if(current.pre!=null){
-                    current.pre.next=current.next;
+                if(current.getPre()!=null){
+                    current.getPre().setNext(current.getNext());
                 }
-                if (current.next!=null){
-                    current.next.pre=current.pre;
+                if (current.getNext()!=null){
+                    current.getNext().setPre(current.getPre());
                 }
             }
             current=current.getNext();
         }
-    }   
+    }  
+
     public int search(T value){
         Node<T> travel = head;
         int countIndex=0;
         while(travel!=null){
             if (travel.getInfo().equals(value)){
-                System.out.println(value + " is at position " +countIndex);
                 return countIndex;
             }
             travel=travel.getNext();
             countIndex++;
         }
-        System.out.println(value+" Not Found");
         return -1;
-        }
-   public Object get(int indexToGet){
-    Node<T> travel = head;
+    }
+
+    public Object get(int indexToGet){
+     Node<T> travel = head;
         int countIndex=0;
         while(travel!=null){
             if (countIndex==indexToGet){
@@ -98,9 +99,8 @@ public class LList<T> {
             travel=travel.getNext();
             countIndex++;  
         }
-        System.out.println("index "+ indexToGet+ " out of bounds for list size "+countIndex );
         return null; 
-   }
+    }
 
     public void display(){
         Node<T> current = head;
@@ -111,23 +111,24 @@ public class LList<T> {
         System.out.print(current.getInfo() + " -> ");
         System.out.println("null");
 
-        // while (current.getPre() != null) {
-        //     System.out.print(current.getInfo() + " -> ");
-        //     current = current.getPre();
-        // }
-        // System.out.print(current.getInfo() + " -> ");
-        // System.out.println("null");
+        while (current.getPre() != null) {
+            System.out.print(current.getInfo() + " -> ");
+            current = current.getPre();
+        }
+        System.out.print(current.getInfo() + " -> ");
+        System.out.println("null");
+
     }
+
     public int size(){
-        System.out.println("The LinkedList is " + this.size + " nodes long");
       return this.size; 
     }
-    public void set(int nodeIndex, T replace){
+
+    public void set(int nodeIndex, T replace)throws IndexOutOfBoundsException{
         Node<T> travel = head;
         int countIndex=0;
         while(travel!=null){
             if (countIndex == nodeIndex){
-                System.out.println("index "+nodeIndex + " set to " + replace);
                 travel.setInfo(replace);
                 return; 
             }
@@ -135,12 +136,12 @@ public class LList<T> {
             countIndex++;
         }
         if(countIndex>nodeIndex){
-            System.out.println("Index"+nodeIndex+" out of bounds");
+            throw  new IndexOutOfBoundsException();
         }  
     }
+
     public void sort()throws Exception{
-        
-        if(head.info.getClass()!=Integer.class){
+        if(head.getInfo().getClass()!=Integer.class){
             throw new Exception("Can only sort Integers");    
         }
         Node<T> current = head;
@@ -150,10 +151,10 @@ public class LList<T> {
                 current=head;
             }
             while (current.getNext()!=null){
-                if((Integer)current.getInfo() > (Integer)current.next.info){
-                    temp = (Integer)current.next.getInfo();
-                    current.next.info=current.getInfo();
-                    current.info=(T)temp;
+                if((Integer)current.getInfo() > (Integer)current.getNext().getInfo()){
+                    temp = (Integer)current.getNext().getInfo();
+                    current.getNext().setInfo(current.getInfo());
+                    current.setInfo((T)temp);
                 }
                 current=current.getNext(); 
             }

@@ -1,9 +1,7 @@
-
 public class Node<T> {
-
-    T info;
-    Node<T> next;
-    Node<T> pre;
+    private T info;
+    private Node<T> next;
+    private Node<T> pre;
 
     public Node(){
 
@@ -12,7 +10,6 @@ public class Node<T> {
         this.next=next;
         this.info=info;
     }
-
     Node<T> getPre(){
         return this.pre;
     }
@@ -35,17 +32,13 @@ public class Node<T> {
     public static void main(String[] args) throws Exception {
         LList<Integer> list = new LList<>();
 
-        list.addEnd(1);
-        list.addEnd(2);
-        list.addEnd(3);
-        list.addEnd(4);
-        list.addEnd(5);
-      
-        System.out.println("\n");
-        list.display();
-        list.size();
+        list.addEnd(1696);
+        list.addEnd(2367);
+        list.addEnd(567);
+        list.addEnd(752);
+        list.addEnd(59232);
+        System.out.println(list.size());
         list.sort();
-        list.display();
-     
+        list.display();  
     }
 }
