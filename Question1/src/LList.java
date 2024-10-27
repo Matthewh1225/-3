@@ -1,28 +1,28 @@
-public class LList {
-    Node head;
-    Node tail;
+
+
+public class LList<T> {
+
+    Node<T> head;
+    Node<T> tail;
     int size=0;
-    public void addEnd(Object info){
-        Node nodeToAddEnd = new Node();
+
+    public void addEnd(T info){
+        Node<T> nodeToAddEnd = new Node<>();
         nodeToAddEnd.setInfo(info);
         nodeToAddEnd.setNext(null);
         if (head==null){
             nodeToAddEnd.setPre(null);
             head = nodeToAddEnd;
-            this.size++;
-
+           
         }else{
-            Node nextNode = head;
-            while (nextNode.getNext()!= null){
-                nextNode= nextNode.getNext();
-            }
-            nodeToAddEnd.setPre(nextNode);
-            nextNode.setNext(nodeToAddEnd);
-            this.size++;
+            nodeToAddEnd.setPre(tail);
+            tail.setNext(nodeToAddEnd);  
         } 
+        tail = nodeToAddEnd;
+        this.size++;
     }
-    public Node addBegining(Object info){
-        Node nodeToAddBegining = new Node();
+    public Node<T> addBegining(T info){
+        Node<T> nodeToAddBegining = new Node<>();
         nodeToAddBegining.setPre(null);
         nodeToAddBegining.setInfo(info);
         nodeToAddBegining.setNext(head);
@@ -36,7 +36,7 @@ public class LList {
         return head;
     }
     public void removeByIndex(int index){
-        Node current = head;
+        Node<T> current = head;
         int count = 0;
         this.size--;
         while(current!=null){
@@ -55,8 +55,8 @@ public class LList {
             count++; 
         }
     } 
-    public void removeByValue(Object value){
-        Node current = head;
+    public void removeByValue(T value){
+        Node<T> current = head;
         this.size--;
         while(current!=null){
             if(current.getInfo().equals(value)){
@@ -73,8 +73,8 @@ public class LList {
             current=current.getNext();
         }
     }   
-    public int search(Object value){
-        Node travel = head;
+    public int search(T value){
+        Node<T> travel = head;
         int countIndex=0;
         while(travel!=null){
             if (travel.getInfo().equals(value)){
@@ -88,7 +88,7 @@ public class LList {
         return -1;
         }
    public Object get(int indexToGet){
-    Node travel = head;
+    Node<T> travel = head;
         int countIndex=0;
         while(travel!=null){
             if (countIndex==indexToGet){
@@ -103,7 +103,7 @@ public class LList {
    }
 
     public void display(){
-        Node current = head;
+        Node<T> current = head;
         while (current.getNext() != null) {
             System.out.print(current.getInfo() + " -> ");
             current = current.getNext();
@@ -122,9 +122,8 @@ public class LList {
         System.out.println("The LinkedList is " + this.size + " nodes long");
       return this.size; 
     }
-
-    public void set(int nodeIndex, Object replace){
-        Node travel = head;
+    public void set(int nodeIndex, T replace){
+        Node<T> travel = head;
         int countIndex=0;
         while(travel!=null){
             if (countIndex == nodeIndex){
@@ -139,20 +138,24 @@ public class LList {
             System.out.println("Index"+nodeIndex+" out of bounds");
         }  
     }
-    public void sort(){
-        Node current = head;
-        int temp;
+    public void sort()throws Exception{
+        
+        if(head.info.getClass()!=Integer.class){
+            throw new Exception("Can only sort Integers");    
+        }
+        Node<T> current = head;
+        Integer temp;
         for (int i = 0 ; i < this.size-1 ; i++){
-            if(current.next==null){
+            if(current==tail){
                 current=head;
             }
             while (current.getNext()!=null){
-                    if((int)current.getInfo() > (int)current.next.info){
-                        temp = (int)current.next.getInfo();
-                        current.next.info=current.getInfo();
-                        current.info=temp;
-                    }
-                    current=current.getNext(); 
+                if((Integer)current.getInfo() > (Integer)current.next.info){
+                    temp = (Integer)current.next.getInfo();
+                    current.next.info=current.getInfo();
+                    current.info=(T)temp;
+                }
+                current=current.getNext(); 
             }
         }
     }
