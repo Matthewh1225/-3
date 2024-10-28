@@ -8,7 +8,7 @@ public class LList<T> {
         Node<T> nodeToAddEnd = new Node<>();
         nodeToAddEnd.setInfo(info);
         nodeToAddEnd.setNext(null);
-        if (head==null){
+        if (head==null || tail==null){
             nodeToAddEnd.setPre(null);
             head = nodeToAddEnd;
            
@@ -17,7 +17,7 @@ public class LList<T> {
             tail.setNext(nodeToAddEnd);  
         } 
         tail = nodeToAddEnd;
-        this.size++;
+        size++;
     }
 
     public Node<T> addBegining(T info){
@@ -27,22 +27,25 @@ public class LList<T> {
         nodeToAddBegining.setNext(head);
         if(head!=null){
             head.setPre(nodeToAddBegining);
-
+        }
+        else{
+            tail=nodeToAddBegining;
         }
         head=nodeToAddBegining;
-        this.size++;
+        size++;
 
         return head;
     }
-
     public void removeByIndex(int index){
         Node<T> current = head;
         int count = 0;
-        this.size--;
         while(current!=null){
             if(count==index){
                 if( current==head){
                     head=current.getNext();
+                }
+                if( current==tail){
+                    tail=current.getPre();
                 }
                 if(current.getPre()!=null){
                     current.getPre().setNext(current.getNext());
@@ -50,6 +53,7 @@ public class LList<T> {
                 if (current.getNext()!=null){
                     current.getNext().setPre(current.getPre());
                 }
+                size--;
             }
             current=current.getNext();
             count++; 
@@ -58,21 +62,27 @@ public class LList<T> {
 
     public void removeByValue(T value){
         Node<T> current = head;
-        this.size--;
+        
         while(current!=null){
             if(current.getInfo().equals(value)){
                 if( current==head){
                     head=current.getNext();
                 }
+                if( current==tail){
+                    tail=current.getPre();
+                }
+
                 if(current.getPre()!=null){
                     current.getPre().setNext(current.getNext());
                 }
                 if (current.getNext()!=null){
                     current.getNext().setPre(current.getPre());
                 }
+                size--;
+                return;
             }
-            current=current.getNext();
-        }
+            current=current.getNext(); 
+        } 
     }  
 
     public int search(T value){
@@ -93,7 +103,6 @@ public class LList<T> {
         int countIndex=0;
         while(travel!=null){
             if (countIndex==indexToGet){
-                System.out.println(travel.getInfo());
                 return travel.getInfo() ;
             }
             travel=travel.getNext();
@@ -111,7 +120,6 @@ public class LList<T> {
         System.out.print(current.getInfo() + " -> ");
         System.out.println("null");
 
-        
     }
     public void displayBackward(){
         Node<T> current = tail;
@@ -123,9 +131,8 @@ public class LList<T> {
         System.out.println("null");
     }
     
-
     public int size(){
-      return this.size; 
+      return size; 
     }
 
     public void set(int nodeIndex, T replace)throws IndexOutOfBoundsException{
@@ -139,18 +146,17 @@ public class LList<T> {
             travel=travel.getNext();
             countIndex++;
         }
-        if(countIndex>nodeIndex){
+        if(countIndex>size){
             throw  new IndexOutOfBoundsException();
         }  
     }
-
     public void sort()throws Exception{
         if(head.getInfo().getClass()!=Integer.class){
             throw new Exception("Can only sort Integers");    
         }
         Node<T> current = head;
         Integer temp;
-        for (int i = 0 ; i < this.size-1 ; i++){
+        for (int i = 0 ; i < size-1 ; i++){
             if(current==tail){
                 current=head;
             }
