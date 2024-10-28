@@ -102,7 +102,7 @@ public class LList<T> {
         return null; 
     }
 
-    public void display(){
+    public void displayForward(){
         Node<T> current = head;
         while (current.getNext() != null) {
             System.out.print(current.getInfo() + " -> ");
@@ -111,14 +111,18 @@ public class LList<T> {
         System.out.print(current.getInfo() + " -> ");
         System.out.println("null");
 
+        
+    }
+    public void displayBackward(){
+        Node<T> current = tail;
         while (current.getPre() != null) {
             System.out.print(current.getInfo() + " -> ");
             current = current.getPre();
         }
         System.out.print(current.getInfo() + " -> ");
         System.out.println("null");
-
     }
+    
 
     public int size(){
       return this.size; 
