@@ -111,26 +111,6 @@ public class LList<T> {
         return null; 
     }
 
-    public void displayForward(){
-        Node<T> current = head;
-        while (current.getNext() != null) {
-            System.out.print(current.getInfo() + " -> ");
-            current = current.getNext();
-        }
-        System.out.print(current.getInfo() + " -> ");
-        System.out.println("null");
-
-    }
-    public void displayBackward(){
-        Node<T> current = tail;
-        while (current.getPre() != null) {
-            System.out.print(current.getInfo() + " -> ");
-            current = current.getPre();
-        }
-        System.out.print(current.getInfo() + " -> ");
-        System.out.println("null");
-    }
-    
     public int size(){
       return size; 
     }
@@ -150,6 +130,7 @@ public class LList<T> {
             throw  new IndexOutOfBoundsException();
         }  
     }
+
     public void sort()throws Exception{
         if(head.getInfo().getClass()!=Integer.class){
             throw new Exception("Can only sort Integers");    
@@ -170,4 +151,5 @@ public class LList<T> {
             }
         }
     }
+    
 }
